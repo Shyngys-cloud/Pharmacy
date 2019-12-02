@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+     <div id="content-container" class="container p-none">
+        <div class="lgn-container col-lg-8">
+            <form action="login" method="POST">
+                {% csrf_token %}
+                <table class="table">
+                    <tr>
+                        <td><label for="username">Username</label></td>
+                        <td><input type="text" name="username" id="username"
+                                   type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="password">Password</label></td>
+                        <td><input type="text" name="password" id="password"
+                                   type="password" class="form-control"></td>
+                    </tr>
+                </table>
+                {% if login_error %}
+                    <p class=" label label-danger">
+                        <label class="error">{{ login_error }}</label>
+                    </p>
+                {% endif %}
+
+                <input type="submit" value="Login"
+                       class="btn btn-primary pull-right" />
+                <input type="hidden" name="next" value="Login" />
+            <div class="btn btn-default"><a href="/user_register/">Register</a></div>
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
